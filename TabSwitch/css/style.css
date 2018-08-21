@@ -2,33 +2,49 @@
   display: none;
 }
 
-table {
+.tabs{
+  font-size: 14px;
+  color:#657180
+}
+.tabs-bar:after{
+  content: '';
+  display: block;
   width: 100%;
-  margin-bottom:24px;
-  border-collapse: collapse;
-  border-spacing: 0;
-  empty-cells: show;
-  border: 1px solid #e9e9e9;
+  height: 1px;
+  background: #d7dde4;
+  margin-top: -1px;
 }
-table th{
-  background: #f7f7f7;
-  color: #5c6b77;
-  font-weight: 600;
-  white-space: nowrap;
-}
-table td , table th{ 
-  padding : 8px 16px; 
-  border: 1px solid #e9e9e9;
-  text-align : left;
-}
-table th a{
+.tabs-tab{
   display: inline-block;
-  margin: 0 4px;
+  padding: 4px 16px;
+  margin-right: 6px;
+  background: #fff;
+  border: 1px solid #d7dde4;
   cursor: pointer;
+  position: relative;
 }
-table th a.on{
-  color: #3399ff; 
+.tabs-tab>span{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 15px;
+  height: 15px;
 }
-table th a:hover{ 
-  color : #3399ff;
+.tabs-tab-active{
+  color:#3399ff;
+  border-top: 1px solid #3399ff;
+  border-bottom:1px solid #fff;
+}
+.tabs-tab-active:before{
+  content:'';
+  display: block;
+  height: 1px;
+  background: #3399ff;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.tabs-content{
+  padding: 8px 0
 }

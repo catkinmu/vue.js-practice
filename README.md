@@ -3,7 +3,7 @@
 基于 Vue2.x 的实践demo
 
 <!-- >初识组件--tab切换 -->
-
+<!-- http://caibaojian.com/vue/guide/custom-directive.html -->
 ## 用法
 
 克隆仓库到本地
