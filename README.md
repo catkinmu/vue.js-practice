@@ -28,5 +28,6 @@ npm start
 .
 ├── README.md
 ├── TabSwitch          ## Tab切换组件
+├── MessageBoard       ## render模式留言板demo
 └── SortTable          ## 可排序table组件
 ```
