@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>可排序的表格组件</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <v-table :data="data" :columns="columns"></v-table>
+    <button @click="handleAddData">添加数据</button>
+  </div>
+
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+  <script src="js/table.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        columns: [
+          {
+            title: '姓名',
+            key: 'name'
+          },
+          {
+            title: '年龄',
+            key: 'age',
+            sortable: true
+          },
+          {
+            title: '出生日期',
+            key: 'birthday',
+            sortable: true
+          },
+          {
+            title: '地址',
+            key: 'address'
+          }
+        ],
+        data: [
+          {
+            name: '小明',
+            age: 18,
+            birthday: '1999-02-21',
+            address: '北京市朝阳区'
+          },
+          {
+            name: '张晓刚',
+            age: 25,
+            birthday: '1992-01-21',
+            address: '北京市海淀区'
+          },
+          {
+            name: '李晓红',
+            age: 30,
+            birthday: '1987-11-21',
+            address: '上海市浦东新区'
+          },
+          {
+            name: '周小伟',
+            age: 26,
+            birthday: '1991-10-10',
+            address: '深圳市南山区'
+          }
+        ]
+      },
+      methods: {
+        handleAddData() {
+          this.data.push({
+            name: '林宥嘉',
+            age: 21,
+            birthday: '1998-10-10',
+            address: '深圳市南山区'
+          })
+        }
+      }
+    })
+  </script>
+
+</body>
+
+</html>

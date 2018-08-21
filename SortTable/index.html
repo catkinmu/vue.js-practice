@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>基于Vue开发的标签页组件</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css" />
+    </head>
+
+    <body>
+        <div id="app" v-cloak>
+            <!--设置value便于父组件与子组件通信-->
+            <tabs v-model='value'>
+                <pane label="标签一" name='1'>
+                    标签一的内容
+                </pane>
+                <pane label="标签二" name='2'>
+                    标签二的内容
+                </pane>
+                <pane label="标签三" name='3'>
+                    标签三的内容
+                </pane>
+            </tabs>
+        </div>
+
+        <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+        <script src="js/pane.js" type="text/javascript" charset="utf-8"></script>
+        <script src="js/tabs.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    //初始显示第几个
+                    value: '1'
+                }
+            });
+        </script>
+    </body>
+
+</html>
