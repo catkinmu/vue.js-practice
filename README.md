@@ -27,5 +27,8 @@ npm start
 ├── README.md
 ├── TabSwitch          ## Tab切换组件
 ├── MessageBoard       ## render模式留言板demo
-└── SortTable          ## 可排序table组件
+├── SortTable          ## 可排序table组件
+├── RouteDemo          ## vue路由初探
+└── VuexDemo           ## Vuex状态管理初探
 ```
+<!-- └── -->
