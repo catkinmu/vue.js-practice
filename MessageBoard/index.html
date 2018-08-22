@@ -13,7 +13,7 @@
     <div id="app" v-cloak style="width:500px;margin:0 auto;">
         <div class="message">
             <v-input v-model="username"></v-input>
-            <v-textarea v-model="message"></v-textarea>
+            <v-textarea v-model="message" ref="message"></v-textarea>
             <button @click="handleSend">发布</button>
         </div>
         <list :list="list" @reply="handleReply"></list>

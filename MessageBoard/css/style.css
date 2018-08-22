@@ -8,6 +8,7 @@
 .message{
   width:450px;
   text-align: right;
+  margin-top: 50px;
 }
 .message div{
   margin-bottom: 12px;
