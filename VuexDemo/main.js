@@ -1,8 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router'
+import Vuex from 'vuex'
 import App from './app.vue';
 
 Vue.use(VueRouter)
+Vue.use(Vuex)
 
 const Routers = [
     {
@@ -48,9 +50,24 @@ router.beforeEach((to, form, next) => {
 router.afterEach((to, from, next) => {
     window.scrollTo(0, 0)
 })
+
+const store = new Vuex.Store({
+    state: {
+        count: 0
+    },
+    mutations: {
+        increment(state, n = 1) {
+            state.count += n
+        },
+        decrease(state, n = 1) {
+            state.count -= n
+        }
+    }
+})
 new Vue({
     el: '#app',
     router,
+    store,
     render: h => {
         return h(App)
     }
