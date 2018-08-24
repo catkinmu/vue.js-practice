@@ -29,6 +29,7 @@ npm start
 ├── MessageBoard       ## render模式留言板demo
 ├── SortTable          ## 可排序table组件
 ├── RouteDemo          ## vue路由初探
-└── VuexDemo           ## Vuex状态管理初探
+├── VuexDemo           ## Vuex状态管理初探
+└── Daily              ## 仿知乎日报
 ```
 <!-- └── -->
