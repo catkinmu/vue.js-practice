@@ -7,7 +7,7 @@ const imgPort = 8011
 
 
 const apiServer = http.createServer((req, res) => {
-  const url = 'http://news-at.zhihu.com/api/4' + req.url
+  const url = 'https://news-at.zhihu.com/api/4' + req.url
   const options = {
     url: url
   }
@@ -30,6 +30,7 @@ const apiServer = http.createServer((req, res) => {
 apiServer.listen(port, hostname, () => {
   console.log(`接口代理运行在 http://${hostname}:${port}/`);
 })
+// 创建一个图片代理服务
 const imgServer = http.createServer((req, res) => {
   const url = req.url.split('/img/')[1]
   const options = {
@@ -48,6 +49,6 @@ const imgServer = http.createServer((req, res) => {
 })
 
 //监听 8011 端口
-apiServer.listen(imgPort, hostname, () => {
+imgServer.listen(imgPort, hostname, () => {
   console.log(`图片代理运行在 http://${hostname}:${imgPort}/`);
 })
