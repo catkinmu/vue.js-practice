@@ -30,9 +30,10 @@ body{
     display: inline-block;
     width: 16px;
     height: 16px;
-    text-align: centet;
+    text-align: center;
     border-radius: 50%;
     background: #ff5500;
     color:#fff;
     font-size: 12px;
+    line-height: 16px;
 }

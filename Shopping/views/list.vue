@@ -21,6 +21,24 @@
           <template v-if="order==='cost-desc'">↓</template>
         </span>
       </div>
+      <div class="list-control-filter">
+        <span>品牌: </span>
+        <span 
+          class="list-control-filter-item" 
+          :class="{on:item===filterBrand}"
+          v-for="(item,index) in brands" 
+          :key="index" 
+          @click="handleFilterBrand(item)">{{item}}</span>
+      </div>
+      <div class="list-control-filter">
+        <span>颜色: </span>
+        <span 
+          class="list-control-filter-item" 
+          :class="{on:item===filterColor}"
+          v-for="(item,index) in colors" 
+          :key="index" 
+          @click="handleFilterColor(item)">{{item}}</span>
+      </div>
     </div>
     <Product 
       v-for="item in filteredAndOrderList" 
@@ -41,13 +59,21 @@ export default {
       //sales(销量)
       //cost-dest(价格降序)
       //cost-asc(价格升序)
-      order: ""
+      order: "",
+      filterBrand: "",
+      filterColor: ""
     };
   },
   computed: {
     list() {
       //从Vuex 获取商品列表数据
       return this.$store.state.productList;
+    },
+    brands() {
+      return this.$store.getters.brands;
+    },
+    colors() {
+      return this.$store.getters.colors;
     },
     filteredAndOrderList() {
       //复制原始数据
@@ -64,6 +90,13 @@ export default {
           list = list.sort((a, b) => a.cost - b.cost);
         }
       }
+      //按品牌过滤
+      if (this.filterBrand !== "") {
+        list = list.filter(item => item.brand === this.filterBrand);
+      }
+      if (this.filterColor !== "") {
+        list = list.filter(item => item.color === this.filterColor);
+      }
       return list;
     }
   },
@@ -79,6 +112,24 @@ export default {
         this.order = "cost-asc";
       } else {
         this.order = "cost-desc";
+      }
+    },
+    //筛选品牌
+    handleFilterBrand(brand) {
+      //单次点击选中, 再次点击取消选中
+      if (this.filterBrand === brand) {
+        this.filterBrand = "";
+      } else {
+        this.filterBrand = brand;
+      }
+    },
+    //筛选颜色
+    handleFilterColor(color) {
+      //单次点击选中, 再次点击取消选中
+      if (this.filterColor === color) {
+        this.filterColor = "";
+      } else {
+        this.filterColor = color;
       }
     }
   },
@@ -97,6 +148,7 @@ export default {
   padding: 16px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
+.list-control-order,
 .list-control-filter {
   margin-bottom: 16px;
 }
