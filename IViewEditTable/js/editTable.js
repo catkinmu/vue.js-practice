@@ -86,7 +86,7 @@ var vm = new Vue({
        *                    datetime | datetimerange: yyyy-MM-dd HH:mm:ss
        *                    year: yyyy
        *                    month: yyyy-MM
-       *        input     : 渲染input类型 ,可选参数为html5所有类型, 默认text
+       *        input     : 渲染input类型 ,可选参数为html5所有类型 (额外包括textarea属性), 默认text 
        *        handle    : 数组类型, 渲染操作方式,目前只支持 'edit', 'delete'
        * }
        * @version 0.0.1
