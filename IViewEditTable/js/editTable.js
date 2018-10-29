@@ -145,6 +145,7 @@ var vm = new Vue({
         title: '建设内容',
         titleHtml: '建设内容 <i class="ivu-icon ivu-icon-edit"></i>',
         key: 'CONTENT',
+        input:'textarea',
         editable: true
       }, {
         align: 'center',
@@ -156,7 +157,7 @@ var vm = new Vue({
       }, {
         title: '操作',
         align: 'center',
-        width: 100,
+        width: 150,
         key: 'handle',
         handle: ['edit', 'delete']
       }],
