@@ -1,4 +1,12 @@
-﻿var editButton = function(vm, h, currentRow, index) {
+﻿
+// 根据数据中下拉的值找到对应的对象
+function findObjectInOption(name) {
+  return function(item){
+    return  item.value === name;
+  }
+}
+
+var editButton = function(vm, h, currentRow, index) {
   return h('Button', {
     props: {
       size: 'small',
@@ -77,22 +85,23 @@ var vm = new Vue({
        * @name columnsList (浏览器 渲染的列)  
        * @author ch
        * @see https://www.iviewui.com/components/table
-       * @param { 
-       *        titleHtml : 渲染带有html的表头 列: '资金<em class="blue" style="color:red">来源</em>'
-       *        editable  : true,可编辑的列 必须有字段 
-       *        option    : 渲染的下拉框列表
-       *        date      : 渲染成data类型 ,可选参数: 
-       *                    date | daterange: yyyy-MM-dd (默认)
-       *                    datetime | datetimerange: yyyy-MM-dd HH:mm:ss
-       *                    year: yyyy
-       *                    month: yyyy-MM
-       *        input     : 渲染input类型 ,可选参数为html5所有类型 (额外包括textarea属性), 默认text 
-       *        handle    : 数组类型, 渲染操作方式,目前只支持 'edit', 'delete'
+       * @param 
+       * { 
+       *  titleHtml : 渲染带有html的表头 列: '资金<em class="blue" style="color:red">来源</em>'
+       *  editable  : true,可编辑的列 必须有字段 
+       *  option    : 渲染的下拉框列表
+       *  date      : 渲染成data类型 ,可选参数: 
+       *              date | daterange: yyyy-MM-dd (默认)
+       *              datetime | datetimerange: yyyy-MM-dd HH:mm:ss
+       *              year: yyyy
+       *              month: yyyy-MM
+       *  input     : 渲染input类型 ,可选参数为html5所有类型 (额外增加 textarea 属性), 默认text
+       *  handle    : 数组类型, 渲染操作方式,目前只支持 'edit', 'delete'
        * }
        * @version 0.0.1
        */
       columnsList: [{
-        width: 60,
+        width: 80,
         type: 'index',
         title: '序号',
         align: 'center'
@@ -121,10 +130,22 @@ var vm = new Vue({
         editable: true
       }, {
         align: 'center',
-        title: '资金来源',
-        titleHtml: '资金来源 <i class="ivu-icon ivu-icon-edit"></i>',
-        key: 'FUND_FROME',
-        option: ['政府投资', '企业自筹'],
+        title: '流程分类',
+        titleHtml: '流程分类 <i class="ivu-icon ivu-icon-edit"></i>',
+        key: 'FLOW_TYPE_CODE',
+        option: [{
+          value: 'A01',
+          label: '建筑-出让'
+        }, {
+          value: 'A02',
+          label: '建筑-划拨'
+        }, {
+          value: 'B01',
+          label: '市政-绿化'
+        }, {
+          value: 'B02',
+          label: '市政-管线'
+        }],
         editable: true
       }, {
         align: 'center',
@@ -145,7 +166,7 @@ var vm = new Vue({
         title: '建设内容',
         titleHtml: '建设内容 <i class="ivu-icon ivu-icon-edit"></i>',
         key: 'CONTENT',
-        input:'textarea',
+        input: 'textarea',
         editable: true
       }, {
         align: 'center',
@@ -216,8 +237,16 @@ var vm = new Vue({
           item.render = function(h, params) {
             var currentRow = self.cloneDataList[params.index];
             if (!currentRow.editting) {
+              // 日期类型单独 渲染
               if (item.date) {
                 return h('span', self.utils.formatDate(currentRow[item.key], item.date.split('_')[1]))
+              }
+              // 下拉类型单独渲染
+              if(item.option && self.utils.isArray(item.option)){
+                if(typeof item.option[0]=='object'){
+                  // console.log(item.option.find(findObjectInOption(currentRow[item.key])).label);
+                  return h('span', item.option.find(findObjectInOption(currentRow[item.key])).label);
+                }
               }
               return h('span', currentRow[item.key]);
             } else {
@@ -238,9 +267,10 @@ var vm = new Vue({
                 }, item.option.map(function(item) {
                   return h('Option', {
                     props: {
-                      value: item
+                      value: item.value || item,
+                      label: item.label || item
                     }
-                  }, item);
+                  }, item.label || item);
                 }));
               } else if (item.date) {
                 return h('DatePicker', {
@@ -286,12 +316,14 @@ var vm = new Vue({
       setTimeout(function() {
         currentRow.saving = false;
         self.$Message.success('保存完成');
+        console.log(self.dataList);
+        
       }, 1000)
     },
     // 删除数据
     deleteData: function(currentRow, index) {
       var self = this;
-      console.log('删除项ID:',currentRow.ID);
+      console.log(currentRow.ID);
       setTimeout(function() {
         self.$delete(self.dataList, index)
         self.$delete(self.cloneDataList, index)
