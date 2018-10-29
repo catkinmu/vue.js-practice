@@ -105,6 +105,15 @@ git clone https://github.com/catkinmu/vue.js-practice.git
 │   ├── webpack.prod.config.js    ## 生产环境打包配置
 │   ├── package.json              ## 配置项目相关信息，通过执行 npm init 命令创建
 │   └── README.md                 ## 项目说明
+├── IViewEditTable                ## vue+iview 实现的可编辑表格
+│   └── index.html                ## 首页
+│   └── js
+│       └── editTable.js          ## 首页JS
+│   └── ivew                      ## iview相关
+│   └── vue
+│       ├── axios.min.js          ## axios (ajax)
+│       ├── util.js               ## 与业务无关的纯工具函数包
+│       └── vue.min.js            ## vue (2.x)
 └── README.md                     ## 项目说明
 
 ```
