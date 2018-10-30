@@ -318,7 +318,7 @@ var vm = new Vue({
       // 需要保存的数据
       // 模拟ajax
       setTimeout(function() {
-        充值编辑与保存状态
+        //重置编辑与保存状态
         currentRow.saving = false;
         currentRow.editting = false;
         self.$Message.success('保存完成');
