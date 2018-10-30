@@ -130,5 +130,5 @@ var utils = {
 
 
 Vue.prototype.utils = utils
-Vue.prototype.$http = axios
+// Vue.prototype.$http = axios
 window.$http = axios

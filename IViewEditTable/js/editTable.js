@@ -1,11 +1,9 @@
-﻿
-// 根据数据中下拉的值找到对应的对象
+﻿// 根据数据中下拉的值找到对应的对象
 function findObjectInOption(name) {
-  return function(item){
-    return  item.value === name;
+  return function(item) {
+    return item.value === name;
   }
 }
-
 var editButton = function(vm, h, currentRow, index) {
   return h('Button', {
     props: {
@@ -242,8 +240,8 @@ var vm = new Vue({
                 return h('span', self.utils.formatDate(currentRow[item.key], item.date.split('_')[1]))
               }
               // 下拉类型单独渲染
-              if(item.option && self.utils.isArray(item.option)){
-                if(typeof item.option[0]=='object'){
+              if (item.option && self.utils.isArray(item.option)) {
+                if (typeof item.option[0] == 'object') {
                   // console.log(item.option.find(findObjectInOption(currentRow[item.key])).label);
                   return h('span', item.option.find(findObjectInOption(currentRow[item.key])).label);
                 }
@@ -290,6 +288,7 @@ var vm = new Vue({
                 return h('Input', {
                   props: {
                     type: item.input || 'text',
+                    rows: 3,
                     value: currentRow[params.column.key]
                   },
                   on: {
@@ -317,7 +316,6 @@ var vm = new Vue({
         currentRow.saving = false;
         self.$Message.success('保存完成');
         console.log(self.dataList);
-        
       }, 1000)
     },
     // 删除数据
