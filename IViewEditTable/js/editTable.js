@@ -15,22 +15,21 @@ var editButton = function(vm, h, currentRow, index) {
       margin: '0 5px'
     },
     on: {
-      on: {
-        click: function() {
-          // 点击按钮时改变当前行的编辑状态,当数据被更新时,render函数会再次执行,详情参考https://cn.vuejs.org/v2/api/#render
-          // handleBackdata是用来删除当前行的editting属性与saving属性
-          var tempData = vm.handleBackdata(currentRow)
-          if (!currentRow.editting) {
-            currentRow.editting = true;
-          } else {
-            // 这里也是简单的点击编辑后的数据与原始数据做对比,一致则不做操作,其实更好的应该遍历所有属性并判断
-            if (JSON.stringify(tempData) == JSON.stringify(vm.dataList[index])) {
-              console.log('未更改');
-              return currentRow.editting = false;
-            }
-            vm.saveData(currentRow, index)
-            currentRow.saving = true;
+      click: function() {
+        console.log(0);
+        // 点击按钮时改变当前行的编辑状态,当数据被更新时,render函数会再次执行,详情参考https://cn.vuejs.org/v2/api/#render
+        // handleBackdata是用来删除当前行的editting属性与saving属性
+        var tempData = vm.handleBackdata(currentRow)
+        if (!currentRow.editting) {
+          currentRow.editting = true;
+        } else {
+          // 这里也是简单的点击编辑后的数据与原始数据做对比,一致则不做操作,其实更好的应该遍历所有属性并判断
+          if (JSON.stringify(tempData) == JSON.stringify(vm.dataList[index])) {
+            console.log('未更改');
+            return currentRow.editting = false;
           }
+          vm.saveData(currentRow, index)
+          currentRow.saving = true;
         }
       }
     }
