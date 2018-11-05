@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>可编辑表格</title>
+  <link href="iview/iview.css" rel="stylesheet" />
+</head>
+
+<body style="background-color: #f0f3f4;">
+  <div id="editTableCtrl">
+    <i-table :loading="loading" border :data="dataList" :columns="columnsList" stripe size="small"></i-table>
+  </div>
+  <script src="vue/axios.min.js"></script>
+  <script src="vue/vue.min.js"></script>
+  <script src="iview/iview.min.js"></script>
+  <script src="vue/util.js"></script>
+  <script src="js/expand_editTable.js"></script>
+</body>
+
+</html>
