@@ -264,7 +264,8 @@ var vm = new Vue({
                   },
                   on: {
                     'on-change': function(value) {
-                      self.$set(currentRow, params.column.key, value)
+                      currentRow[params.column.key] = value
+                      // self.$set(currentRow, params.column.key, value)
                     }
                   }
                 }, item.option.map(function(item) {
@@ -285,7 +286,8 @@ var vm = new Vue({
                   },
                   on: {
                     'on-change': function(value) {
-                      self.$set(currentRow, params.column.key, value)
+                      currentRow[params.column.key] = value
+                      // self.$set(currentRow, params.column.key, value)
                     }
                   }
                 });
@@ -301,7 +303,8 @@ var vm = new Vue({
                   },
                   on: {
                     'on-change'(event) {
-                      self.$set(currentRow, params.column.key, event.target.value)
+                      currentRow[params.column.key] = event.target.value
+                      // self.$set(currentRow, params.column.key, event.target.value)
                     }
                   }
                 });
